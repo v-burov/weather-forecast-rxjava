@@ -1,0 +1,48 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext {
+        kotlinVersion = '1.2.41'
+        compileSdkVersion = 27
+        minSdkVersion = 24
+        targetSdkVersion = 27
+        supportLibraryVersion = '27.1.1'
+        constraintLayoutVersion = '1.1.0'
+        junitVersion = '4.12'
+        testRunnerVersion = '1.0.2'
+        archLifecycleVersionExt = "1.1.1"
+        archLifecycleVersion = "1.0.0"
+        rxAndroidVersion = '2.0.1'
+        rxJavaVersion = '2.0.0'
+        rxLifeCycleVersion = '1.0'
+        daggerVersion = '2.9'
+        retrofitVersion = '2.4.0'
+        okHttpVersion = '3.4.2'
+        greenDaoVersion = '3.2.0'
+        stethoVersion = '1.5.0'
+        playServices = '15.0.1'
+        retrofitLibVersion = '2.4.0'
+        glideVersion = '3.7.0'
+    }
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

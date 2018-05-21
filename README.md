@@ -1,1 +1,1 @@
-# weather-app-mvvm
+# weather-android-mvvm

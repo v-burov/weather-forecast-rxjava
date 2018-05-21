@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="google_map_api_key">AIzaSyALKtaJpuib6-NXqVbRg9QqKRmwox4RU6o</string>
+    <string name="error_empty_field">The field cannot be empty</string>
+    <string name="retry">RETRY</string>
+    <string name="error_not_connected">No Internet Connection!</string>
+    <string name="notification_fragment_error_title">Error</string>
+    <string name="pressure">Pressure</string>
+    <string name="temperature">Temperature</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind_speed">Wind speed</string>
+    <string name="enter_city_name">Enter city name</string>
+    <string name="weather_fragment_title">Weather search</string>
+    <string name="weather_details_fragment_title">Weather details</string>
+    <string name="change_city">Change city</string>
+    <string name="city_not_found_error">City not found</string>
+
+</resources>
