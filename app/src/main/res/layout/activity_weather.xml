@@ -12,6 +12,7 @@
 
     <include
         android:id="@+id/progress"
-        layout="@layout/frame_progress" />
+        layout="@layout/frame_progress"
+        android:visibility="gone"/>
 
 </android.support.design.widget.CoordinatorLayout>

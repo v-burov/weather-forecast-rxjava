@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 /**
- * ViewModel holds buisness logic
+ * ViewModel holds business logic
  */
 
 class WeatherViewModel : ViewModel() {
@@ -37,10 +37,10 @@ class WeatherViewModel : ViewModel() {
 
     fun loadFragment() {
         if (isProcess) return
-        progress.value = true
         val s = repository.isWeatherCityAvailable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { progress.value = true }
                 .doFinally { progress.value = false }
                 .subscribe({ if (it) state.value = StateWeatherDetails else state.value = StateWeatherSearch },
                         { state.value = StateErrorException(it) })
@@ -87,31 +87,31 @@ class WeatherViewModel : ViewModel() {
             return
         }
 
-        progress.value = true
         val s = repository.getCityByName(cityName)
                 .onBackpressureBuffer()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { progress.value = true }
                 .doFinally { progress.value = false }
                 .subscribe({ state.value = StateWeatherDetails }, { state.value = StateErrorException(it) })
         compositeDisposable.add(s)
     }
 
     fun initWeatherDetails() {
-        progress.value = true
         val s = repository.getWeatherDetailsFromDb()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { progress.value = true }
                 .doFinally { progress.value = false }
                 .subscribe({ state.value = StateSetWeatherDetails(it) }, { state.value = StateErrorException(it) })
         compositeDisposable.add(s)
     }
 
     fun changeCity() {
-        progress.value = true
         val s = repository.clearData()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { progress.value = true }
                 .doFinally { progress.value = false }
                 .subscribe({ state.value = StateWeatherSearch }, { logClass(it.message.toString()) })
         compositeDisposable.add(s)
