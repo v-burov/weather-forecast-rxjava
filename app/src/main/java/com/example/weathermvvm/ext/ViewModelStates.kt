@@ -1,6 +1,6 @@
 package com.example.weathermvvm.ext
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import android.database.Cursor
 import com.example.weathermvvm.ui.ListItem
 

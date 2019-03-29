@@ -1,8 +1,8 @@
 package com.example.weathermvvm.ui
 
 import android.app.SearchManager
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import android.database.Cursor
 import android.database.MatrixCursor
 import android.provider.BaseColumns
