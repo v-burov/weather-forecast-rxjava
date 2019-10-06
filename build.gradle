@@ -20,7 +20,7 @@ buildscript {
         okHttpVersion = '3.14.0'
         greenDaoVersion = '3.2.2'
         stethoVersion = '1.5.1'
-        playServices = '16.1.0'
+        playServices = '17.0.0'
         retrofitLibVersion = '2.5.0'
         glideVersion = '4.9.0'
     }
@@ -30,7 +30,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:3.5.1'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
