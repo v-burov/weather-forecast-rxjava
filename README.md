@@ -2,7 +2,7 @@
 
 A simple application that provides the weather forecast.
 
-- The app shows the user a map and allows him to choose a city.
+- The app displays the user a map and allows him to choose a city.
 - The user enters a city name, the app sends api request and shows a list of
   query suggestions.
 - After the user has selected a city, pin is dropped on the map.
@@ -10,6 +10,11 @@ A simple application that provides the weather forecast.
 - Every 24 hours the app re-fetches data from the network and updates UI.
 - Error handler handles different errors such as api errors, internet connection
   and displays an error either in dialog or snack bar.
+
+# Goal
+
+To show how to implement MVVM design pattern and using RxJava for background
+tasks.
 
 # Preview
 
