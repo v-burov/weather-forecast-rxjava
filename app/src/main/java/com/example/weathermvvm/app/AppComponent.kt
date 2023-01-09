@@ -16,8 +16,8 @@ import javax.inject.Singleton
 @Component(modules = [(ApiModule::class), (AppModule::class), (DbModule::class)])
 interface AppComponent {
 
-    fun inject(weatherViewModel: WeatherViewModel)
+  fun inject(weatherViewModel: WeatherViewModel)
 
-    fun inject(weatherJobService: WeatherJobService)
+  fun inject(weatherJobService: WeatherJobService)
 
 }

@@ -11,8 +11,9 @@ import javax.inject.Singleton
 @Singleton
 class ConnectivityHelper @Inject constructor(context: Context) {
 
-    private val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+  private val connectivityManager =
+    context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-    val isConnected: Boolean get() = connectivityManager.activeNetworkInfo?.isConnected ?: false
+  val isConnected: Boolean get() = connectivityManager.activeNetworkInfo?.isConnected ?: false
 
 }

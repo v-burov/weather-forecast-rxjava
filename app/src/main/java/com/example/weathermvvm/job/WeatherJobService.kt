@@ -15,27 +15,27 @@ import javax.inject.Inject
 
 class WeatherJobService : JobService() {
 
-    @Inject lateinit var repository: WeatherRepository
+  @Inject lateinit var repository: WeatherRepository
 
-    private val compositeDisposable = CompositeDisposable()
+  private val compositeDisposable = CompositeDisposable()
 
-    override fun onCreate() {
-        super.onCreate()
-        val app = application as WeatherApplication
-        app.appComponent.inject(this)
-    }
+  override fun onCreate() {
+    super.onCreate()
+    val app = application as WeatherApplication
+    app.appComponent.inject(this)
+  }
 
-    override fun onStartJob(p0: JobParameters?): Boolean {
-        val s = repository.schedule().subscribeOn(Schedulers.io())
-                .subscribe({logClass("Scheduler sync success")},
-                        { logClass(it.message?:"Scheduler sync failure") })
-        compositeDisposable.add(s)
-        return true
-    }
+  override fun onStartJob(p0: JobParameters?): Boolean {
+    val s = repository.schedule().subscribeOn(Schedulers.io())
+      .subscribe({ logClass("Scheduler sync success") },
+                 { logClass(it.message ?: "Scheduler sync failure") })
+    compositeDisposable.add(s)
+    return true
+  }
 
-    override fun onStopJob(p0: JobParameters?): Boolean {
-        compositeDisposable.clear()
-        logClass("Job scheduler stops")
-        return true
-    }
+  override fun onStopJob(p0: JobParameters?): Boolean {
+    compositeDisposable.clear()
+    logClass("Job scheduler stops")
+    return true
+  }
 }

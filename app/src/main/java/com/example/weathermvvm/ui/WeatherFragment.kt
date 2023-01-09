@@ -1,8 +1,6 @@
 package com.example.weathermvvm.ui
 
 import android.app.SearchManager
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,6 +11,7 @@ import android.text.TextUtils
 import android.view.*
 import android.widget.CursorAdapter
 import android.widget.SimpleCursorAdapter
+import androidx.lifecycle.ViewModelProvider
 import com.example.weathermvvm.R
 import com.example.weathermvvm.ext.*
 import kotlinx.android.synthetic.main.fragment_weather.*
@@ -48,9 +47,8 @@ class WeatherFragment : Fragment(), OnMapReadyCallback {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
             = inflater.inflate(R.layout.fragment_weather, container, false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         mapView.let {
             it.onCreate(savedInstanceState)
             it.getMapAsync(this)
@@ -58,13 +56,13 @@ class WeatherFragment : Fragment(), OnMapReadyCallback {
         }
 
         val act = activity as AppCompatActivity
-        viewModel = ViewModelProviders.of(act).get(WeatherViewModel::class.java)
-                .also { act.appComponent.inject(it) }
-                .also { it.state.observe(this, Observer { onStateChanged(it) }) }
+        viewModel = ViewModelProvider(act).get(WeatherViewModel::class.java)
+            .also { act.appComponent.inject(it) }
+            .also { it.state.observe(viewLifecycleOwner, { state ->  onStateChanged(state) }) }
         buttonOk.setOnClickListener { viewModel.openWeatherDetails(searchView?.query.toString()) }
 
         searchView.apply {
-            setIconifiedByDefault(false)
+            isIconifiedByDefault = false
             queryHint = getString(R.string.enter_city_name)
             suggestionsAdapter = searchSuggestionAdapter
             inputType = InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
@@ -102,8 +100,8 @@ class WeatherFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    override fun onMapReady(googleMap: GoogleMap?) {
-        map = googleMap
+    override fun onMapReady(map: GoogleMap) {
+        this.map = map
     }
 
     private fun onStateChanged(state: ViewModelState?) = when (state) {
@@ -126,5 +124,4 @@ class WeatherFragment : Fragment(), OnMapReadyCallback {
             addMarker(options)
         }
     }
-
 }

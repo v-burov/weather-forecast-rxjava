@@ -20,17 +20,21 @@ import com.example.weathermvvm.ui.ErrorDialogFragment
 val AppCompatActivity.appComponent: AppComponent get() = (application as WeatherApplication).appComponent
 
 fun AppCompatActivity.showAlertDialog(throwable: Throwable) {
-    throwable.printStackTrace()
-    throwable.message?.let { showErrorDialog(it) }
+  throwable.printStackTrace()
+  throwable.message?.let { showErrorDialog(it) }
 }
 
-fun AppCompatActivity.replaceFragment(fragment: Fragment, fragmentTag: String, anim: IntArray? = null) {
-    val transaction = supportFragmentManager.beginTransaction()
-    if (anim != null) {
-        transaction.setCustomAnimations(anim[0], anim[1])
-    }
-    transaction.replace(R.id.frameContainer, fragment, fragmentTag)
-    transaction.commit()
+fun AppCompatActivity.replaceFragment(
+    fragment: Fragment,
+    fragmentTag: String,
+    anim: IntArray? = null,
+) {
+  val transaction = supportFragmentManager.beginTransaction()
+  if (anim != null) {
+    transaction.setCustomAnimations(anim[0], anim[1])
+  }
+  transaction.replace(R.id.frameContainer, fragment, fragmentTag)
+  transaction.commit()
 }
 
 fun Context.getWeatherImagePath(image: String?) = "${getString(R.string.URL)}img/w/$image.png"
@@ -42,28 +46,30 @@ fun View.show() = let { visibility = View.VISIBLE }
 fun View.gone() = let { visibility = View.GONE }
 
 fun View.hideKeyboard() {
-    val inputMethodManager = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-    inputMethodManager.hideSoftInputFromWindow(this.windowToken, 0)
+  val inputMethodManager =
+    context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+  inputMethodManager.hideSoftInputFromWindow(this.windowToken, 0)
 }
 
 fun RecyclerView.initList(adapter: RecyclerView.Adapter<*>) {
-    val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-    layoutManager.isSmoothScrollbarEnabled = true
-    this.layoutManager = layoutManager
-    this.adapter = adapter
+  val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+  layoutManager.isSmoothScrollbarEnabled = true
+  this.layoutManager = layoutManager
+  this.adapter = adapter
 }
 
 private fun log(message: String, tag: String = "TAG") {
-    val prefix = "***"
-    val prefixTag = if (!tag.startsWith(prefix)) "$prefix$tag" else tag
-    Log.d(prefixTag, message)
+  val prefix = "***"
+  val prefixTag = if (!tag.startsWith(prefix)) "$prefix$tag" else tag
+  Log.d(prefixTag, message)
 }
 
 private fun AppCompatActivity.showErrorDialog(message: String) {
-    var fragment: ErrorDialogFragment? = fragmentManager.findFragmentByTag(ErrorDialogFragment.ERROR_FRAGMENT_DIALOG_TAG) as ErrorDialogFragment?
-    if (fragment == null) {
-        fragment = ErrorDialogFragment.newInstance(message)
-    }
-    fragment.show(fragmentManager, ErrorDialogFragment.ERROR_FRAGMENT_DIALOG_TAG)
+  var fragment: ErrorDialogFragment? =
+    supportFragmentManager.findFragmentByTag(ErrorDialogFragment.ERROR_FRAGMENT_DIALOG_TAG) as ErrorDialogFragment?
+  if (fragment == null) {
+    fragment = ErrorDialogFragment.newInstance(message)
+  }
+  fragment.show(supportFragmentManager, ErrorDialogFragment.ERROR_FRAGMENT_DIALOG_TAG)
 }
 

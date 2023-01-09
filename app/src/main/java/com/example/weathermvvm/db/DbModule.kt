@@ -12,15 +12,15 @@ import javax.inject.Singleton
 @Module
 class DbModule {
 
-    companion object {
-        const val DB_NAME = "weather.db"
-    }
+  companion object {
+    const val DB_NAME = "weather.db"
+  }
 
-    @Singleton
-    @Provides
-    internal fun provideDaoSession(context: Context): DaoSession {
-        val helper = DaoMaster.DevOpenHelper(context, DB_NAME)
-        val db = helper.getWritableDb()
-        return DaoMaster(db).newSession()
-    }
+  @Singleton
+  @Provides
+  internal fun provideDaoSession(context: Context): DaoSession {
+    val helper = DaoMaster.DevOpenHelper(context, DB_NAME)
+    val db = helper.writableDb
+    return DaoMaster(db).newSession()
+  }
 }

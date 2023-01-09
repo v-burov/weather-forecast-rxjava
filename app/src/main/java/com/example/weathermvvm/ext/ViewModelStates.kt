@@ -19,7 +19,7 @@ data class StateSetCityOnMap(val lat: Double, val lon: Double) : ViewModelState(
 data class StateSetWeatherDetails(val list: List<ListItem>) : ViewModelState()
 
 class StateLiveData(state: ViewModelState = StateIdle) : MutableLiveData<ViewModelState>() {
-    init {
-        value = state
-    }
+  init {
+    value = state
+  }
 }

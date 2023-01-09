@@ -15,29 +15,29 @@ import com.facebook.stetho.Stetho
 
 class WeatherApplication : Application() {
 
-    val appComponent: AppComponent by lazy { buildAppComponent() }
+  val appComponent: AppComponent by lazy { buildAppComponent() }
 
-    override fun onCreate() {
-        super.onCreate()
-        if (BuildConfig.DEBUG) Stetho.initializeWithDefaults(this)
-        scheduleJob()
-    }
+  override fun onCreate() {
+    super.onCreate()
+    if (BuildConfig.DEBUG) Stetho.initializeWithDefaults(this)
+    scheduleJob()
+  }
 
-    private fun buildAppComponent(): AppComponent = DaggerAppComponent.builder()
-            .appModule(AppModule(applicationContext))
-            .build()
-            .also { logClass("buildAppComponent finished") }
+  private fun buildAppComponent(): AppComponent = DaggerAppComponent.builder()
+    .appModule(AppModule(applicationContext))
+    .build()
+    .also { logClass("buildAppComponent finished") }
 
-    private fun scheduleJob() {
-        val jobId = 1001
-        val interval = 86400000L
-        val flexInterval = 82800000L
-        val jobScheduler = getSystemService(JOB_SCHEDULER_SERVICE) as JobScheduler
-        val serviceName = ComponentName(this, WeatherJobService::class.java)
-        val jobInfo = JobInfo.Builder(jobId, serviceName)
-                .setPeriodic(interval, flexInterval)
-                .build()
-        jobScheduler.schedule(jobInfo)
-    }
+  private fun scheduleJob() {
+    val jobId = 1001
+    val interval = 86400000L
+    val flexInterval = 82800000L
+    val jobScheduler = getSystemService(JOB_SCHEDULER_SERVICE) as JobScheduler
+    val serviceName = ComponentName(this, WeatherJobService::class.java)
+    val jobInfo = JobInfo.Builder(jobId, serviceName)
+      .setPeriodic(interval, flexInterval)
+      .build()
+    jobScheduler.schedule(jobInfo)
+  }
 
 }

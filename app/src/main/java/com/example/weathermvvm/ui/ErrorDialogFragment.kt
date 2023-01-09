@@ -2,8 +2,8 @@ package com.example.weathermvvm.ui
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.app.DialogFragment
 import android.os.Bundle
+import androidx.fragment.app.DialogFragment
 import com.example.weathermvvm.R
 
 /**
@@ -30,14 +30,14 @@ class ErrorDialogFragment : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         message = if (savedInstanceState == null) {
-            arguments.getString(MESSAGE)
+            arguments?.getString(MESSAGE)
         } else {
             savedInstanceState.getString(MESSAGE)
-        }
+        }.toString()
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
-        outState?.putString(MESSAGE, message)
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString(MESSAGE, message)
         super.onSaveInstanceState(outState)
     }
 

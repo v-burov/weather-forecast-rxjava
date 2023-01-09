@@ -36,12 +36,10 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    // kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     // architecture components
     implementation "androidx.lifecycle:lifecycle-runtime:$archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersionExt"
-    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersionExt"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$archLifecycleVersionExt"
     // support library
     implementation "androidx.appcompat:appcompat:$supportLibraryVersion"
     implementation "androidx.legacy:legacy-support-v4:$supportLibraryVersion"
