@@ -1,6 +1,6 @@
 # Weather forecast (MVVM-RxJava)
 
-The application that provides a simple weather forecast.
+A simple application that provides the weather forecast.
 
 - The app shows the user a map and allows him to choose a city.
 - The user enters a city name, the app sends api request and shows a list of
