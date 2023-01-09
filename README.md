@@ -7,6 +7,8 @@ A simple application that provides a weather forecast.
   query suggestions.
 - After the user has selected a city, pin is dropped on the map.
 - The app fetches data from the network and saves it locally on android device.
+- Weather forecast details are displayed for chosen city (temperature,
+  pressure, humidity etc.)
 - Every 24 hours the app re-fetches data from the network and updates UI.
 - Error handler handles different errors such as api errors, internet connection
   and displays an error either in dialog or snack bar.
