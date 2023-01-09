@@ -1,6 +1,6 @@
 # Weather forecast (MVVM-RxJava)
 
-A simple application that provides the weather forecast.
+A simple application that provides a weather forecast.
 
 - The app displays the user a map and allows him to choose a city.
 - The user enters a city name, the app sends api request and shows a list of
@@ -31,4 +31,5 @@ RxJava 2, GreedDao, Glide.
 2. Use interface for WeatherRepository to follow Dependency Inversion Principle.
 3. Use diff utils instead of re-draw weather details in case update comes.
 4. Change dynamically navigation bar title.
-5. Improve UI design. 
+5. Improve UI design.
+6. Add unit tests.
